@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canelia | Queques y Postres</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            background: #fff8f5;
+            color: #4a2922;
+        }
+
+        header {
+            background: linear-gradient(135deg, #6d2c2c, #a94b4b);
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        header h1 {
+            font-family: Georgia, serif;
+            font-size: 42px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 18px;
+        }
+
+        .presentacion {
+            text-align: center;
+            padding: 35px 20px 20px;
+        }
+
+        .presentacion h2 {
+            font-size: 30px;
+            color: #7a3030;
+            margin-bottom: 10px;
+        }
+
+        .presentacion p {
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.6;
+        }
+
+        .productos {
+            width: 90%;
+            max-width: 1200px;
+            margin: 25px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+        }
+
+        .producto {
+            background: white;
+            border-radius: 18px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.10);
+            transition: 0.3s;
+        }
+
+        .producto:hover {
+            transform: translateY(-6px);
+        }
+
+        .imagen {
+            height: 150px;
+            background: linear-gradient(135deg, #f6d7c9, #fbeee8);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 65px;
+            margin-bottom: 15px;
+        }
+
+        .producto h3 {
+            color: #6d2c2c;
+            margin-bottom: 8px;
+        }
+
+        .precio {
+            color: #a52f2f;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        .boton {
+            border: none;
+            background: #7d3030;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .boton:hover {
+            background: #a94b4b;
+        }
+
+        /* CARRITO */
+
+        .carrito {
+            width: 92%;
+            max-width: 800px;
+            margin: 45px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.10);
+        }
+
+        .carrito h2 {
+            text-align: center;
+            color: #7a3030;
+            margin-bottom: 25px;
+            font-size: 30px;
+        }
+
+        .item-carrito {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            gap: 15px;
+            align-items: center;
+            padding: 15px 5px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .nombre-producto {
+            font-weight: bold;
+        }
+
+        .cantidad {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cantidad button {
+            width: 28px;
+            height: 28px;
+            border: none;
+            border-radius: 50%;
+            background: #7d3030;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .subtotal {
+            font-weight: bold;
+            color: #a52f2f;
+        }
+
+        .eliminar {
+            border: none;
+            background: #ddd;
+            color: #555;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .resumen {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            text-align: right;
+        }
+
+        .resumen p {
+            font-size: 18px;
+            margin: 6px 0;
+        }
+
+        .total {
+            font-size: 28px !important;
+            font-weight: bold;
+            color: #a52f2f;
+        }
+
+        .finalizar {
+            width: 100%;
+            margin-top: 25px;
+            padding: 15px;
+            border: none;
+            border-radius: 30px;
+            background: #25D366;
+            color: white;
+            font-size: 19px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .finalizar:hover {
+            background: #1ebe5d;
+        }
+
+        /* YAPE */
+
+        .yape {
+            width: 90%;
+            max-width: 700px;
+            margin: 30px auto 50px;
+            background: #7200a8;
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .yape h2 {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .numero {
+            background: white;
+            color: #7200a8;
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 12px;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .nombre {
+            font-size: 17px;
+        }
+
+        footer {
+            background: #4b2525;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 650px) {
+
+            header h1 {
+                font-size: 32px;
+            }
+
+            .item-carrito {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                padding: 18px 5px;
+            }
+
+            .cantidad {
+                justify-content: flex-start;
+            }
+
+            .subtotal {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🍰 Canelia</h1>
+    <p>Pequeños momentos, grandes sabores ❤️</p>
+</header>
+
+<section class="presentacion">
+    <h2>Nuestros Postres</h2>
+    <p>
+        Disfruta de deliciosos queques, cheesecakes, pays y trufas
+        preparados con mucho cariño para endulzar tus momentos especiales.
+    </p>
+</section>
+
+<section class="productos">
+
+    <div class="producto">
+        <div class="imagen">🍫</div>
+        <h3>Queque de Chocolate</h3>
+        <p>Delicioso y suave queque de chocolate.</p>
+        <div class="precio">S/ 3.00</div>
+        <button class="boton" onclick="agregar('Queque de Chocolate', 3)">
+            Agregar al pedido
+        </button>
+    </div>
+
+    <div class="producto">
+        <div class="imagen">🥭</div>
+        <h3>Queque de Maracuyá</h3>
+        <p>Suave queque con delicioso sabor a maracuyá.</p>
+        <div class="precio">S/ 3.00</div>
+        <button class="boton" onclick="agregar('Queque de Maracuyá', 3)">
+            Agregar al pedido
+        </button>
+    </div>
+
+    <div class="producto">
+        <div class="imagen">🍊</div>
+        <h3>Queque de Naranja</h3>
+        <p>Esponjoso y con delicioso aroma a naranja.</p>
+        <div class="precio">S/ 3.00</div>
+        <button class="boton" onclick="agregar('Queque de Naranja', 3)">
+            Agregar al pedido
+        </button>
+    </div>
+
+    <div class="producto">
+        <div class="imagen">🍓</div>
+        <h3>Cheesecake de Fresa</h3>
+        <p>Cremoso cheesecake con sabor a fresa.</p>
+        <div class="precio">S/ 5.00</div>
+        <button class="boton" onclick="agregar('Cheesecake de Fresa', 5)">
+            Agregar al pedido
+        </button>
+    </div>
+
+    <div class="producto">
+        <div class="imagen">🍋</div>
+        <h3>Cheesecake de Limón</h3>
+        <p>Suave, cremoso y con un toque cítrico.</p>
+        <div class="precio">S/ 5.00</div>
+        <button class="boton" onclick="agregar('Cheesecake de Limón', 5)">
+            Agregar al pedido
+        </button>
+    </div>
+
+    <div class="producto">
+        <div class="imagen">🥭</div>
+        <h3>Cheesecake de Maracuyá</h3>
+        <p>Cremoso y con sabor especial a maracuyá.</p>
+        <div class="precio">S/ 5.00</div>
+        <button class="boton" onclick="agregar('Cheesecake de Maracuyá', 5)">
+            Agregar al pedido
+        </button>
+    </div>
+
+    <div class="producto">
+        <div class="imagen">🍫</div>
+        <h3>Cheesecake de Chocolate</h3>
+        <p>Perfecto para los amantes del chocolate.</p>
+        <div class="precio">S/ 5.00</div>
+        <button class="boton" onclick="agregar('Cheesecake de Chocolate', 5)">
+            Agregar al pedido
+        </button>
+    </div>
+
+    <div class="producto">
+        <div class="imagen">🍋</div>
+        <h3>Pay de Limón</h3>
+        <p>Delicioso pay con un toque refrescante.</p>
+        <div class="precio">S/ 5.00</div>
+        <button class="boton" onclick="agregar('Pay de Limón', 5)">
+            Agregar al pedido
+        </button>
+    </div>
+
+    <div class="producto">
+        <div class="imagen">🍓</div>
+        <h3>Pay de Fresa</h3>
+        <p>Suave y delicioso con sabor a fresa.</p>
+        <div class="precio">S/ 5.00</div>
+        <button class="boton" onclick="agregar('Pay de Fresa', 5)">
+            Agregar al pedido
+        </button>
+    </div>
+
+    <div class="producto">
+        <div class="imagen">🍍</div>
+        <h3>Pay de Piña</h3>
+        <p>Una combinación dulce y tropical.</p>
+        <div class="precio">S/ 5.00</div>
+        <button class="boton" onclick="agregar('Pay de Piña', 5)">
+            Agregar al pedido
+        </button>
+    </div>
+
+    <div class="producto">
+        <div class="imagen">🍎</div>
+        <h3>Pay de Manzana</h3>
+        <p>Clásico pay con delicioso sabor a manzana.</p>
+        <div class="precio">S/ 5.00</div>
+        <button class="boton" onclick="agregar('Pay de Manzana', 5)">
+            Agregar al pedido
+        </button>
+    </div>
+
+</section>
+
+
+<!-- CARRITO -->
+
+<section class="carrito">
+
+    <h2>🛒 Tu pedido</h2>
+
+    <div id="lista-carrito">
+        <p style="text-align:center;">Todavía no has agregado productos.</p>
+    </div>
+
+    <div class="resumen">
+
+        <p>
+            Cantidad total de productos:
+            <strong id="cantidad-total">0</strong>
+        </p>
+
+        <p class="total">
+            Total: S/ <span id="total">0.00</span>
+        </p>
+
+    </div>
+
+    <button class="finalizar" onclick="finalizarPedido()">
+        📲 Finalizar pedido por WhatsApp
+    </button>
+
+</section>
+
+
+<!-- YAPE -->
+
+<section class="yape">
+
+    <h2>💜 Pago por Yape</h2>
+
+    <p>Realiza tu pago de manera rápida y sencilla.</p>
+
+    <div class="numero">
+        914 432 376
+    </div>
+
+    <p class="nombre">
+        <strong>Leanny Dahiana Cano Jimenez</strong>
+    </p>
+
+    <img src="QR IMG.png"
+     alt="Código QR de Yape"
+     style="width:220px; height:220px; margin-top:20px; border-radius:10px;">
+
+    <br>
+
+    <p>
+        Después de realizar el pago, envíanos tu comprobante
+        para confirmar tu pedido.
+    </p>
+
+</section>
+
+
+<footer>
+    <p>© 2026 Canelia</p>
+    <p>Queques • Cheesecakes • Pays</p>
+</footer>
+
+
+<script>
+
+    let carrito = {};
+
+    function agregar(nombre, precio) {
+
+        if (carrito[nombre]) {
+
+            carrito[nombre].cantidad++;
+
+        } else {
+
+            carrito[nombre] = {
+                precio: precio,
+                cantidad: 1
+            };
+
+        }
+
+        mostrarCarrito();
+    }
+
+
+    function aumentar(nombre) {
+
+        carrito[nombre].cantidad++;
+
+        mostrarCarrito();
+    }
+
+
+    function disminuir(nombre) {
+
+        carrito[nombre].cantidad--;
+
+        if (carrito[nombre].cantidad <= 0) {
+            delete carrito[nombre];
+        }
+
+        mostrarCarrito();
+    }
+
+
+    function eliminar(nombre) {
+
+        delete carrito[nombre];
+
+        mostrarCarrito();
+    }
+
+
+    function mostrarCarrito() {
+
+        const lista = document.getElementById("lista-carrito");
+
+        lista.innerHTML = "";
+
+        let total = 0;
+        let cantidadTotal = 0;
+
+        const productos = Object.keys(carrito);
+
+        if (productos.length === 0) {
+
+            lista.innerHTML =
+                '<p style="text-align:center;">Todavía no has agregado productos.</p>';
+
+        }
+
+        productos.forEach(nombre => {
+
+            const producto = carrito[nombre];
+
+            const subtotal =
+                producto.precio * producto.cantidad;
+
+            total += subtotal;
+
+            cantidadTotal += producto.cantidad;
+
+            const item = document.createElement("div");
+
+            item.className = "item-carrito";
+
+            item.innerHTML = `
+
+                <div class="nombre-producto">
+                    ${nombre}
+                </div>
+
+                <div>
+                    S/ ${producto.precio.toFixed(2)} c/u
+                </div>
+
+                <div class="cantidad">
+
+                    <button onclick="disminuir('${nombre}')">
+                        −
+                    </button>
+
+                    <strong>${producto.cantidad}</strong>
+
+                    <button onclick="aumentar('${nombre}')">
+                        +
+                    </button>
+
+                </div>
+
+                <div class="subtotal">
+                    S/ ${subtotal.toFixed(2)}
+
+                    <button
+                        class="eliminar"
+                        onclick="eliminar('${nombre}')">
+                        ×
+                    </button>
+                </div>
+
+            `;
+
+            lista.appendChild(item);
+
+        });
+
+        document.getElementById("cantidad-total").textContent =
+            cantidadTotal;
+
+        document.getElementById("total").textContent =
+            total.toFixed(2);
+    }
+
+
+    function finalizarPedido() {
+
+        const productos = Object.keys(carrito);
+
+        if (productos.length === 0) {
+
+            alert("Primero agrega al menos un producto a tu pedido.");
+
+            return;
+        }
+
+        let mensaje =
+            "🍰 *NUEVO PEDIDO - CANELIA*%0A%0A";
+
+        let total = 0;
+        let cantidadTotal = 0;
+
+        productos.forEach(nombre => {
+
+            const producto = carrito[nombre];
+
+            const subtotal =
+                producto.precio * producto.cantidad;
+
+            total += subtotal;
+
+            cantidadTotal += producto.cantidad;
+
+            mensaje +=
+                "🍰 " + nombre +
+                "%0A" +
+                "   Cantidad: " + producto.cantidad +
+                "%0A" +
+                "   Precio: S/ " + producto.precio.toFixed(2) +
+                "%0A" +
+                "   Subtotal: S/ " + subtotal.toFixed(2) +
+                "%0A%0A";
+
+        });
+
+        mensaje +=
+            "📦 *Cantidad total:* " +
+            cantidadTotal +
+            "%0A" +
+            "💰 *TOTAL: S/ " +
+            total.toFixed(2) +
+            "*%0A%0A" +
+            "💜 Pago por Yape: 914432376";
+
+        const numeroWhatsApp = "51914432376";
+
+        const url =
+            "https://wa.me/" +
+            numeroWhatsApp +
+            "?text=" +
+            mensaje;
+
+        window.open(url, "_blank");
+
+    }
+
+</script>
+
+</body>
+</html>
